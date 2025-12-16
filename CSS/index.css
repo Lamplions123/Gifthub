@@ -1,0 +1,81 @@
+:root{
+    --general-color: #128323;
+    --light-general-color: #189b2c;
+    --light: #fff;
+    --dark: #000;
+}
+
+nav{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.catalog-button{
+    align-items: center;
+    background-color: var(--general-color);
+    color: var(--light);
+    border: 0;
+    border-radius: 4px;
+    display: flex;
+}
+
+.catalog-button:hover{
+    cursor: pointer;
+    background-color: var(--light-general-color);
+}
+
+.catalog-button::before{
+    content: "";
+    width: 25px;
+    height: 20px;
+    background-image: url(../imgs/catalog-icon.png);
+    background-size: 20px;
+    background-repeat: no-repeat;
+}
+
+
+
+.sign-in-button{
+    background-color: transparent;
+    border: 0;
+}
+
+.sign-in-button:hover{
+    cursor: pointer;
+    color: var(--general-color);
+}
+
+.sign-in-button::before{
+    content: "";
+    display: grid;
+    background-image: url(../imgs/user.png);
+    height: 20px;
+    width: 20px;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    border-radius: 16px;
+}
+
+
+
+
+.orders-button{
+    background-color: transparent;
+    border: 0;
+}
+
+.orders-button:hover{
+    cursor: pointer;
+    color: var(--general-color);
+}
+
+.orders-button::before{
+    content: "";
+    display: grid;
+    background-image: url(../imgs/box.png);
+    height: 20px;
+    width: 20px;
+    background-size: 20px;
+    background-repeat: no-repeat;
+}
