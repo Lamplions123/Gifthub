@@ -1,37 +1,42 @@
-:root{
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+:root {
     --general-color: #128323;
     --light-general-color: #189b2c;
     --light: #fff;
     --dark: #000;
     --general-color-filter: brightness(0) saturate(100%) invert(16%) sepia(99%) saturate(4503%) hue-rotate(142deg) brightness(98%) contrast(86%);
     --light-general-color-filter: brightness(0) saturate(100%) invert(44%) sepia(66%) saturate(671%) hue-rotate(80deg) brightness(93%) contrast(89%);
+    --OS: "Open Sans", sans-serif;
+    --NS: "Nunito Sans", sans-serif;
+    --Fredoka: "Fredoka", sans-serif;
 }
 
-header.container{
+header.container {
     padding-top: 20px;
 }
 
-nav{
+nav {
     display: flex;
     gap: 35px;
     transform: scale(2);
 }
 
-.general-color-button{
+.general-color-button {
     background-color: var(--general-color);
     color: var(--light);
     border: 0;
     border-radius: 5px;
     display: flex;
-    align-items: center;
+    align-items: center;;
 }
 
-.general-color-button:hover{
+.general-color-button:hover {
     cursor: pointer;
     background-color: var(--light-general-color);
 }
 
-.general-color-button::before{
+.general-color-button::before {
     content: "";
     background-repeat: no-repeat;
     height: 15px;
@@ -39,12 +44,12 @@ nav{
     background-size: 15px;
 }
 
-.general-color-button.catalog::before{
+.general-color-button.catalog::before {
     background-image: url(../imgs/icons/catalog-icon.png);
     filter: invert();
 }
 
-.icon-button{
+.icon-button {
     background-color: transparent;
     align-items: center;
     color: var(--general-color);
@@ -52,12 +57,12 @@ nav{
     display: flex;
 }
 
-.icon-button:hover{
+.icon-button:hover {
     cursor: pointer;
     color: var(--light-general-color);
 }
 
-.icon-button::before{
+.icon-button::before {
     content: "";
     background-repeat: no-repeat;
     height: 15px;
@@ -65,37 +70,37 @@ nav{
     background-size: 15px;
 }
 
-.icon-button.enter::before{
+.icon-button.enter::before {
     background-image: url(../imgs/icons/user.png);
     filter: invert(70%);
 }
 
-.icon-button.orders::before{
+.icon-button.orders::before {
     background-image: url(../imgs/icons/box.png);
     filter: invert(70%);
 }
 
-.icon-button.favourite::before{
+.icon-button.favourite::before {
     background-image: url(../imgs/icons/heart.png);
     filter: invert(70%);
 }
 
-.icon-button.cart::before{
+.icon-button.cart::before {
     background-image: url(../imgs/icons/shopping-bag.png);
     filter: invert(70%);
 }
 
-.icon-button:hover::before{
+.icon-button:hover::before {
     filter: var(--light-general-color-filter);
 }
 
-input[type="search"]{
+input[type="search"] {
     border-radius: 6px;
     border-color: var(--general-color);
     outline: none;
 }
 
-.container{
+.container {
     display: flex;
     padding-top: 100px;
     max-width: 60%;
@@ -103,12 +108,13 @@ input[type="search"]{
     justify-content: center;
 }
 
-.product{
+.product {
     width: 256px;
     height: 465px;
+    font-family: var(--Fredoka);
 }
 
-.product .thumbnail{
+.product .thumbnail {
     width: 100%;
     height: 350px;
     background-size: cover;
@@ -116,19 +122,44 @@ input[type="search"]{
     border-radius: 10px;
 }
 
-.product .price{
+.product .price {
     color: var(--general-color);
+    font-size: 30px;
+    font-weight: 500;
 }
 
-.product .old-price{
+.product .old-price {
     color: gray;
     text-decoration-line: line-through;
+    font-size: 20px;
 }
 
-.product .discount{
-    color: purple;
+.product .discount {
+    color: magenta;
+    font-size: 20px;
 }
 
-.product .reviews{
+.product .reviews {
     color: gray;
+}
+
+.product .left{
+    color: magenta;
+    font-size: 15px;
+}
+
+.product p{
+    line-height: 10px;
+}
+
+.product .name{
+    font-size: 20px;
+}
+
+.product .rating::before{
+    content: "";
+    background-image: url(../imgs/icons/star.png);
+    background-repeat: no-repeat;
+    width: 25px;
+    height: 25px;
 }
