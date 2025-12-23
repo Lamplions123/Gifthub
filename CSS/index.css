@@ -225,3 +225,17 @@ footer{
     margin-top: 100px;
     padding-bottom: 500px;
 }
+.login-frame{
+    position: absolute; 
+    top: 50%;
+    left: 50%;
+    width: 20%;
+    height: 50%;
+}
+
+
+footer .container .div a{
+    display: flex;
+    flex-direction: column;
+    color: white
+}
