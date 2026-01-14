@@ -1,19 +1,24 @@
-let thumbnails = 19
+let thumbnailsCount = 18 // 0 картинку не считать
 let products = []
+let thumbnails = []
 
-generateProducts(thumbnails + 1)
+generateProducts(thumbnailsCount)
 
 function generateProducts(number) {
-    for (let i = 1; i < number ; i++) {
-        let price = getRandomArbitrary(10, 100) /* функция для
-        получения рандомного числа в диапозоне */
+    for (let i = 0; i <= number; i++) {
+        thumbnails.push(`imgs/thumbnails/${i}.webp`)
+    }
+
+    for (let i = 0; i <= number; i++) {
+        let price = getRandomArbitrary(10, 100)
         let oldPrice = getRandomArbitrary(price + 10, price + 100)
-        let discount = getRandomArbitrary(0, 1) /* 0 = false, 
-        1 = true */
-        let rating = getRandomArbitrary(1, 5, 1) /* 3 число - 
-        сколько знаков после запятой */
+        let discount = getRandomArbitrary(0, 1)
+        let rating = getRandomArbitrary(1, 5, 1)
         let reviews = getRandomArbitrary(1, 4000)
         let left = getRandomArbitrary(1, 999)
+
+        let thumbnailIndex = getRandomArbitrary(0, thumbnails.length)
+        let thumbnail = thumbnails[thumbnailIndex]
 
         products.push({
             price: price,
@@ -22,8 +27,10 @@ function generateProducts(number) {
             rating: rating,
             reviews: reviews,
             left: left,
-            thumbnail: `imgs/thumbnails/${i}.webp`
+            thumbnail: thumbnail
         })
+
+        thumbnails.splice(thumbnailIndex, 1)
     }
 }
 
@@ -35,9 +42,7 @@ function getRandomDay() {
     let random = getRandomArbitrary(0, 15)
 
     if (random == 0) {
-        return "Сегодня" /* так как весь код в функции,
-        а имя функции говорит, что  вызыватель что-то получит (get),
-        то мы и возвращаем (return) ответ */
+        return "Сегодня"
     }
     else if (random == 1) {
         return "Завтра"
@@ -46,10 +51,9 @@ function getRandomDay() {
         return "Послезавтра"
     }
     else {
-        let date = new Date() /* получение текущего времени*/
+        let date = new Date()
 
-        date.setDate(date.getDate() + random) /* добавление
-        рандомного количество дней в переменную времени*/
+        date.setDate(date.getDate() + random)
 
         let day = date.getDate() 
         let month = date.toLocaleString("ru", { month: "long" }) /*
@@ -60,20 +64,26 @@ function getRandomDay() {
     }
 }
 
-function getRandomArbitrary(min, max, numbersAfterDot) {
-    return Number((Math.random() * (max - min) + min).toFixed(numbersAfterDot))
+function getRandomArbitrary(min, max, numbersAfterDot = 0) {
+    let randomValue = Math.random() * (max - min) + min;
+    
+    if (numbersAfterDot === 0) {
+        return Math.floor(randomValue);
+    }
+    
+    return randomValue.toFixed(numbersAfterDot);
 }
 
 for (let product of products) {
     let appendList = []
 
     let productDiv = document.createElement("div")
-    productDiv.className = "product"
+    productDiv.className = "product" 
 
     let thumbnailDiv = document.createElement("div")
     thumbnailDiv.className = "thumbnail"
     thumbnailDiv.style.backgroundImage = `url(${product.thumbnail})`
-    appendList.push(thumbnailDiv)
+    appendList.push(thumbnailDiv) 
 
     let priceSpan = document.createElement("span")
     priceSpan.className = "price"
@@ -130,14 +140,18 @@ for (let product of products) {
     document.getElementById("feed").append(productDiv);
 }
 
-
-
-
-
-
 function showOrHideLogin(){
-    let element = document.querySelector(".login-fullscreen")
-    element.style.visibility = element.style.visibility === 'visible' ? 'hidden' : 'visible'
+    let fullscreen = document.querySelector(".login-fullscreen")
+    let frame = document.querySelector(".login-frame")
+
+    if (fullscreen.classList.contains("active")) {
+        fullscreen.classList.remove("active")
+        frame.classList.remove("active")
+    }
+    else {
+        fullscreen.classList.add("active")
+        frame.classList.add("active")
+    }
 }
 
 function loginAlert(){
@@ -145,7 +159,8 @@ function loginAlert(){
 }
 
 document.querySelector(".close").addEventListener("click", showOrHideLogin)
-document.querySelector(".login-footer").addEventListener("click", showOrHideLogin)
+document.querySelector(".login-nav").addEventListener("click", showOrHideLogin)
+
 document.querySelector(".cart").addEventListener("click", loginAlert)
 document.querySelector(".favourite").addEventListener("click", loginAlert)
 document.querySelector(".orders").addEventListener("click", loginAlert)
